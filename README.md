@@ -2,7 +2,6 @@
 
 A modern, feature-rich boilerplate for Next.js applications with Shadcn UI, Tailwind CSS, and authentication.
 
-![NextBoiler](screenshot.png)
 
 ## Features
 
