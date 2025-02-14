@@ -1,64 +1,69 @@
-import axios from 'axios'
+import axios from 'axios';
 
-//API er base URL
+// API base URL
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
-})
+});
 
-// Auth related shob API call
+// Auth related API calls
 export const authService = {
-  // Login er jonno API call
-  login: async (credentials) => { // credentials = {email, password}
+  // Login API call
+  login: async (credentials) => {
     try {
-      
-      const response = await api.post('/auth/login', credentials)// POST request pathano hocche
-      return response.data// API response theke data return kora hocche
-    } catch (error) {// Jodi kono error ashe taile error message dekhabe
-      
-      throw new Error(error.response?.data?.message || "Login failed")// API theke error message ashe kina check kore message dekhano hocche
-    }
-  },
-
-  // Registration er jonno API call
-  register: async (userData) => { // userData = {name, email, password}
-    try {
-      const response = await api.post('/auth/register', userData)// POST request pathano hocche
-      return response.data// API response theke data return kora hocche
+      const response = await api.post('/auth/login', credentials);
+      return response.data;
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Registration failed")// Jodi kono error ashe taile error message dekhabe
+      throw new Error(error.response?.data?.message || "Login failed");
     }
   },
 
-  // User er profile info ber korar jonno API call
+  // Registration API call
+  register: async (userData) => {
+    try {
+      const response = await api.post('/auth/register', userData);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Registration failed");
+    }
+  },
+
+  // Get current user API call
   getCurrentUser: async () => {
     try {
-      const response = await api.get('/auth/me')// GET request pathano hocche
-      return response.data// API response theke data return kora hocche
+      const response = await api.get('/auth/me');
+      return response.data;
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Failed to fetch user data")// Kono error hole null return kora hocche
+      throw new Error(error.response?.data?.message || "Failed to fetch user data");
     }
   },
 
-  // Password reset er jonno API call
+  // Forgot password API call
   forgotPassword: async (email) => {
     try {
-      const response = await api.post('/auth/forgot-password', { email })// POST request pathano hocche
-      return response.data// API response theke data return kora hocche
+      const response = await api.post('/auth/forgot-password', { email });
+      return response.data;
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Password reset request failed")// Kono error hole null return kora hocche
+      throw new Error(error.response?.data?.message || "Password reset request failed");
     }
   },
 
-  // Reset password confirm korar jonno API call
+  // Reset password API call
   resetPassword: async (token, newPassword) => {
     try {
-      const response = await api.post('/auth/reset-password', {
-        token,
-        newPassword
-      })// POST request pathano hocche
-      return response.data// API response theke data return kora hocche
+      const response = await api.post('/auth/reset-password', { token, newPassword });
+      return response.data;
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Password reset failed")// Kono error hole null return kora hocche
+      throw new Error(error.response?.data?.message || "Password reset failed");
+    }
+  },
+
+  // Refresh token API call
+  refreshToken: async (token) => {
+    try {
+      const response = await api.post('/auth/refresh-token', { token });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Token refresh failed");
     }
   }
-} 
+};
