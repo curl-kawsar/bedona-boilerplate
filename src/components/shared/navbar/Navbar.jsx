@@ -1,71 +1,35 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu } from "lucide-react"
+import React from 'react';
+import Link from 'next/link';
 
 const Navbar = () => {
-  const pathname = usePathname()
-
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-7xl mx-auto flex h-16 items-center px-4">
-        <div className="flex items-center space-x-3">
-          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-lg font-bold text-primary-foreground">N</span>
+    <nav className="bg-gray-900 bg-opacity-90 backdrop-blur-sm border-b border-gray-800 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          <div className="flex items-center">
+            <div className="font-mono text-blue-400 font-bold text-xl flex items-center">
+              <div className="w-8 h-8 bg-blue-500 rounded-md mr-2 flex items-center justify-center">
+                <span className="text-white">&lt;/&gt;</span>
+              </div>
+              <span className="glow-text">BAIUST_CSE</span>
+            </div>
           </div>
-          <span className="text-xl font-semibold">NextBoiler</span>
-        </div>
-
-        <div className="flex items-center justify-center flex-1 px-8">
-          <div className="flex items-center space-x-8">
+          
+          <div className="flex items-center space-x-4">
+            <div className="px-2 py-1 rounded-md bg-blue-900 bg-opacity-50 border border-blue-800 text-blue-400 text-xs font-mono">
+              <span className="mr-1">&#9679;</span> System Online
+            </div>
             <Link 
               href="/" 
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === "/" ? "text-primary" : "text-muted-foreground"
-              }`}
+              className="hover:text-blue-400 transition-colors duration-200 font-mono text-sm text-gray-300"
             >
               Home
             </Link>
-            <Link 
-              href="/features" 
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === "/features" ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              Features
-            </Link>
-            <Link 
-              href="/about" 
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === "/about" ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              About
-            </Link>
           </div>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          {pathname !== "/login" && pathname !== "/register" && (
-            <>
-              <Link href="/login">
-                <Button variant="ghost">
-                  Sign In
-                </Button>
-              </Link>
-              <Link href="/register">
-                <Button>
-                  Get Started
-                </Button>
-              </Link>
-            </>
-          )}
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar; 
